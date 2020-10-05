@@ -160,6 +160,7 @@ var silvaCalc = nukma.addNumbers.bind(silva, 1, 2, 3, 4);//function(){}...
 silvaCalc();//"silva just calculated 10"
 var silvaCalc2 = nukma.addNumbers.bind(silva, 1, 2);//function(){}...
 silvaCalc2(3, 4);//"silva just calculated 10"
+//The parameters work like call, but bind returns a function defention with the context of 'this' bound already
 // What's neat about bind is that we do not need to know all the parameters to the function when we bind it. we only need to know what we want the value of the keyword this to be.
 
 // Another very common use case of BIND is to set the context of the keyword this for a function that will be called at a later point in time.
@@ -173,4 +174,17 @@ silvaCalc2(3, 4);//"silva just calculated 10"
 // The first parameter to set timeout is a function to be executed.
 // And the second parameter is the amount of time in milliseconds to wait before executing the function
 
-// Now that we've called this(called the setTimeout functon) we can actually do other things like define new variables or continue running codes. This is what we mean by asynchronous(asinkron/tidak sinkron:D)
+// Now that we've called this(called the setTimeout functon) we can actually do other things like define new variables or continue running codes.
+// This is what we mean by asynchronous(asinkron/tidak sinkron:D), Our code is not blocked while we wait 20 seconds and we can do other things while we wait.
+
+
+//========Bind in the wild==========
+//Very commonly we lose the context of keyword 'this', but in function that we do not want to execute right away
+var eppi = {
+  firstName: "Eppi",
+  sayHi: function () {
+    setTimeout(function () {
+      console.log("Hi " + this.firstName)
+    }, 1000)
+  }
+}
